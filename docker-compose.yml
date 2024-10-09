@@ -1,11 +1,13 @@
-version: "3.8"
 services:
   api:
-    build: .
-    ports:
-      - "3000:3000"
+    build:
+      context: .  # El contexto de construcción es la raíz del proyecto
+      dockerfile: Dockerfile  # Nombre del Dockerfile
     volumes:
-      - .:/app
-      - /app/node_modules
+      - .:/app  # Monta el directorio actual en el contenedor
+      - /app/node_modules  # No montar la carpeta de node_modules
+    ports:
+      - "3000:3000"  # Exponer el puerto 3000
+    command: ["npx", "nodemon", "--exec", "ts-node", "src/index.ts"]  # Usar nodemon con ts-node
     environment:
-      NODE_ENV: development
+      - NODE_ENV=development  # Establecer el entorno como desarrollo

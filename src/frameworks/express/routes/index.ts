@@ -1,8 +1,7 @@
 import { Router } from "express";
-import userRoutes from "./UserRoutes";
-
+import smiteRoutes from "./games/smiteRoutes";
 const router = Router();
 
-router.use('/users', userRoutes);
+router.use("/games", smiteRoutes);
 
 export default router;
