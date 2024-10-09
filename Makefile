@@ -15,6 +15,10 @@ cache-clear:
 	rm -rf node_modules package-lock.json
 	npm install
 
-.PHONY: acceptancte-test
-acceptance-test:
-	docker compose run --rm api npm run test
+.PHONY: unit
+unit:
+	docker compose run api npm test -- tests/unit
+
+.PHONY: acceptance
+acceptance:
+	docker compose run api npm test -- tests/acceptance
