@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // o 'ES2020', 'ESNext', etc.
+    "module": "commonjs", // para Node.js
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist", // directorio de salida
+    "rootDir": "./src"  // directorio raíz de los archivos fuente
+  },
+  "include": ["src/**/*"], // directorios a incluir
+  "exclude": ["node_modules", "**/*.spec.ts"] // directorios a excluir
+}
