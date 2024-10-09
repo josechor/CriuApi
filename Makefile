@@ -14,3 +14,7 @@ up:
 cache-clear:
 	rm -rf node_modules package-lock.json
 	npm install
+
+.PHONY: acceptancte-test
+acceptance-test:
+	docker compose run --rm api npm run test

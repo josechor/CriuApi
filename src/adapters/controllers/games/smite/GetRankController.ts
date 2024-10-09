@@ -2,17 +2,22 @@ import express from "express";
 import { Controller } from "../../../interfaces/Controller";
 import { Rank } from "../../../models/games/Rank";
 import { GetRank } from "../../../../core/use-cases/GetRank";
+import { RankEntity } from "../../../../core/entities/RankEntity";
 
 export class GetRankController implements Controller {
-  constructor(private GetRank: GetRank) {}
+  constructor(private getRank: GetRank) {}
 
-  execute = async (req: express.Request, res: express.Response) => {
-    const userId = req.params.userId;
+  execute = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
     try {
-      const rank = await this.GetRank.execute(userId);
-      res.json(new Rank(rank.rank, rank.date));
+      const userId = req.params.userId;
+      const rank: RankEntity = await this.getRank.execute(userId);
+      res.json(rank);
     } catch (error) {
-      res.status(500).json({ message: 'Error fetching rank data' });
+      next(error);
     }
   };
 }
